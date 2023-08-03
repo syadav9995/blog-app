@@ -1,0 +1,20 @@
+
+<%= render "shared/errors", obj: @article %>
+<%= form_with(model: @article, local: true) do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br/>
+<br/>
+
+<%= f.label :title %>
+<%= f.text_area :title %>
+<br/>
+<br/>
+
+<%= f.label :categories %>
+<%= f.collection_select :category_ids, Category.order(:name), :id, :name, {:prompt => 'Please select the author of this post'},{ multiple: true } %>
+<br/>
+<br/>
+<%= f.submit %>
+<% end %>

@@ -1,0 +1,31 @@
+<h2>Article listing page</h2>
+<table>
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>title</th>
+			<th colspan="3">actions</th>
+		</tr>
+	</thead>
+	<tbody>
+				<% @articles.each do |article| %>
+		<tr>
+				<td> <%=article.name%> </td>
+				<td> <%=article.title%> </td>
+				<td> <%= link_to 'show', article_path(article) %> </td>
+				<% if logged_in? && (article.user == current_user || current_user.admin?) %> 
+					<td> <%= link_to 'edit', edit_article_path(article) %> </td>
+					<td> 	<%= link_to "delete", article_path(article), method: :delete, data: {confirm: "are you sure"}%>
+				<%end%>
+ </td>
+			
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+
+	<div class="flickr_pagination">
+    	<%= will_paginate @article, :container => false %>
+    </div>
+
+<%= link_to "new article", new_article_path %>

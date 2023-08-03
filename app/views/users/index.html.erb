@@ -1,0 +1,19 @@
+<h2>Users listing page</h2>
+
+	<% @users.each do |user| %>
+		<p><%=link_to user.user_name, user%> </p>
+		<%= graveter_for @user, size: 200%>
+		<p>articles: <%= pluralize(user.articles.count, "article") %></p>
+		<h4> joind :<%= time_ago_in_words(user.created_at)%> ago</h4>
+	 	<%= link_to 'view profile', user %>
+	 	<% if logged_in? && (user == current_user || current_user.admin?) %> 
+	 	<%= link_to 'edit', edit_user_path(user) %> 
+	 	<%= link_to "delete", user_path(user), method: :delete, data: {confirm: "are you sure"}%>
+	 	<% end %>
+	 	<br/>
+	 	<br/>
+	 	<br/>
+	 	<br/>
+	<%end%>
+	
+<%= link_to "new user", signup_path %>

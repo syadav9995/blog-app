@@ -1,0 +1,14 @@
+	<h1>Article showing  page</h1>
+	<p> name: <%= @article.name %> </p>
+	<p> title: <%= @article.title %> </p>
+	<p> category: 
+		<% @article.categories.each do |c| %>
+			<%= c.name %> 
+		<%end%>
+		</p>
+	<% if logged_in? && @article.user == current_user %> 
+		<%= link_to "edit", edit_article_path(@article)%>
+		<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "are you sure"}%>
+	<%end%>
+	<%= link_to "return to article listing page", articles_path%>
+		

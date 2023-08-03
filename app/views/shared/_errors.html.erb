@@ -1,0 +1,10 @@
+<%if  obj.errors.any? %>
+	<h2>following errors are accures at the time of <%= obj.class.name.downcase %> save</h2>
+	<ul>
+		<% obj.errors.full_messages.each do |error| %>
+		<li>
+			<%= error%>
+			</li>
+		<% end %>
+	</ul>
+<%end%>
